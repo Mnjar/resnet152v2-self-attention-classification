@@ -1,12 +1,12 @@
-# Proyek Klasifikasi Gambar
+# Image Classification Project
 
-## Deskripsi Proyek
-Proyek ini bertujuan untuk mengklasifikasikan gambar hewan ke dalam 10 kategori yang berbeda menggunakan model Convolutional Neural Network (CNN). Dataset yang digunakan terdiri dari 26.179 gambar dengan kategori seperti anjing, kucing, kuda, laba-laba, kupu-kupu, ayam, domba, sapi, tupai, dan gajah.
+## Project Description
+This project aims to classify images of animals into 10 different categories using a Convolutional Neural Network (CNN) model. The dataset consists of 26,179 images with categories such as dog, cat, horse, spider, butterfly, chicken, sheep, cow, squirrel, and elephant.
 
-Model yang digunakan adalah **ResNet152V2** sebagai base model yang diikuti oleh beberapa layer tambahan, termasuk **SelfAttention** custom layer, untuk meningkatkan performa klasifikasi.
+The model used is **ResNet152V2** as the base model, followed by several additional layers, including a custom **SelfAttention** layer, to enhance classification performance.
 
 ## Dataset
-Dataset ini berisi sekitar 26.179 gambar hewan yang terbagi dalam 10 kategori:
+This dataset contains approximately 26,179 images of animals divided into 10 categories:
 - **dog**
 - **cat**
 - **horse**
@@ -18,12 +18,12 @@ Dataset ini berisi sekitar 26.179 gambar hewan yang terbagi dalam 10 kategori:
 - **squirrel**
 - **elephant**
 
-Dataset diambil dari [Kaggle - Animals10](https://www.kaggle.com/datasets/alessiocorrado99/animals10)
+The dataset is taken from [Kaggle - Animals10](https://www.kaggle.com/datasets/alessiocorrado99/animals10).
 
-## Arsitektur Model
-Model CNN yang dibangun memiliki arsitektur sebagai berikut:
+## Model Architecture
+The built CNN model has the following architecture:
 - **Base Model**: ResNet152V2 (pre-trained, frozen)
-- **Layer Tambahan**:
+- **Additional Layers**:
   - Conv2D (128 filters, kernel size 3x3, activation 'relu')
   - BatchNormalization
   - MaxPooling2D (pool size 2x2)
@@ -34,16 +34,16 @@ Model CNN yang dibangun memiliki arsitektur sebagai berikut:
   - Dropout (rate 0.5)
   - Dense (10 units, activation 'softmax')
 
-Model dilatih dengan **Adam optimizer** dan **categorical_crossentropy** sebagai loss function.
+The model is trained with the **Adam optimizer** and **categorical_crossentropy** as the loss function.
 
-## Proses Pelatihan
-Model dilatih menggunakan dataset yang dibagi menjadi train set dan validation set dengan rasio 80:20. Berikut adalah callback yang digunakan selama pelatihan:
-- **ReduceLROnPlateau**: Mengurangi learning rate jika val_loss tidak mengalami perbaikan.
-- **EarlyStopping**: Menghentikan pelatihan jika val_loss tidak membaik selama 2 epoch.
-- **ModelCheckpoint**: Menyimpan model terbaik berdasarkan val_accuracy.
+## Training Process
+The model is trained using a dataset split into a training set and a validation set with a ratio of 80:20. The following callbacks are used during training:
+- **ReduceLROnPlateau**: Reduces the learning rate if val_loss does not improve.
+- **EarlyStopping**: Stops training if val_loss does not improve for 2 epochs.
+- **ModelCheckpoint**: Saves the best model based on val_accuracy.
 
-### Format Model yang Disimpan
-Model disimpan dalam tiga format berbeda:
-- **SavedModel**: Format standar TensorFlow.
-- **TF-Lite**: Dioptimalkan untuk perangkat mobile.
-- **TFJS**: Untuk dijalankan di browser.
+### Saved Model Formats
+The model is saved in three different formats:
+- **SavedModel**: Standard TensorFlow format.
+- **TF-Lite**: Optimized for mobile devices.
+- **TFJS**: For running in the browser.
